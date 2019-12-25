@@ -23,7 +23,7 @@ class SmspohMessage
      *
      * @var bool
      */
-    public $test;
+    public $test = false;
 
     /**
      * Create a new message instance.
@@ -68,7 +68,7 @@ class SmspohMessage
      * @param bool $test
      * @return $this
      */
-    public function test($test)
+    public function test($test = true)
     {
         $this->test = $test;
 

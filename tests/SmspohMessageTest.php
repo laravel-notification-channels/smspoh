@@ -33,8 +33,8 @@ class SmspohMessageTest extends TestCase
     /** @test */
     public function it_can_set_the_test(): void
     {
-        $message = (new SmspohMessage())->test(1);
+        $message = (new SmspohMessage())->test(true);
 
-        $this->assertEquals(1, $message->test);
+        $this->assertTrue($message->test);
     }
 }

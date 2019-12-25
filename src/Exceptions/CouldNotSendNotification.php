@@ -10,6 +10,7 @@ class CouldNotSendNotification extends Exception
     /**
      * Thrown when content length is greater than 918 characters.
      *
+     * @param $count
      * @return static
      */
     public static function contentLengthLimitExceeded($count): self

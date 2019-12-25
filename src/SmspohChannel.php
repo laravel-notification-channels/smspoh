@@ -10,7 +10,7 @@ class SmspohChannel
     /**
      * The Smspoh client instance.
      *
-     * @var \NotificationChannels\Smspoh\SmspohApi
+     * @var SmspohApi
      */
     protected $smspoh;
 
@@ -37,10 +37,10 @@ class SmspohChannel
      * Send the given notification.
      *
      * @param mixed $notifiable
-     * @param \Illuminate\Notifications\Notification $notification
+     * @param Notification $notification
      *
      * @return mixed|\Psr\Http\Message\ResponseInterface|void
-     * @throws \NotificationChannels\Smspoh\Exceptions\CouldNotSendNotification
+     * @throws CouldNotSendNotification
      */
     public function send($notifiable, Notification $notification)
     {
@@ -62,7 +62,7 @@ class SmspohChannel
             'sender' => $message->sender ?: $this->sender,
             'to' => $to,
             'message' => trim($message->content),
-            'test' => $message->test ?: 0,
+            'test' => $message->test ?: false,
         ]);
     }
 }

@@ -2,6 +2,7 @@
 
 namespace NotificationChannels\Smspoh;
 
+use DomainException;
 use GuzzleHttp\Client as HttpClient;
 use GuzzleHttp\Exception\ClientException;
 use GuzzleHttp\Exception\GuzzleException;
@@ -24,6 +25,11 @@ class SmspohApi
      * @var string
      */
     protected $sender;
+
+    /**
+     * @var string
+     */
+    protected $token;
 
     public function __construct($token = null, HttpClient $httpClient = null)
     {
@@ -63,14 +69,14 @@ class SmspohApi
                     'sender' => Arr::get($message, 'sender'),
                     'to' => Arr::get($message, 'to'),
                     'message' => Arr::get($message, 'message'),
-                    'test' => Arr::get($message, 'test', 0),
+                    'test' => Arr::get($message, 'test', false),
                 ],
             ]);
 
             $response = json_decode((string) $response->getBody(), true);
 
             if (isset($response['error'])) {
-                throw new \DomainException($response['error'], $response['error_code']);
+                throw new DomainException($response['error'], $response['error_code']);
             }
 
             return $response;

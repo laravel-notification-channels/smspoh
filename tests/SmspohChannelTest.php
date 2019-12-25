@@ -26,7 +26,7 @@ class SmspohChannelTest extends TestCase
             'sender' => '5554443333',
             'to' => '5555555555',
             'message' => 'this is my message',
-            'test' => 0,
+            'test' => false,
         ])->once();
 
         $channel->send(new TestNotifiable(), new TestNotification());
