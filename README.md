@@ -8,7 +8,7 @@
 [![Code Coverage](https://img.shields.io/scrutinizer/coverage/g/laravel-notification-channels/smspoh/master.svg?style=flat-square)](https://scrutinizer-ci.com/g/laravel-notification-channels/smspoh/?branch=master)
 [![Total Downloads](https://img.shields.io/packagist/dt/laravel-notification-channels/smspoh.svg?style=flat-square)](https://packagist.org/packages/laravel-notification-channels/smspoh)
 
-This package makes it easy to send notifications using [SmsPoh](https://smspoh.com/) with Laravel 5.5+ and 6.0
+This package makes it easy to send notifications using [SmsPoh](https://smspoh.com/) with Laravel 5.5+, 6.x and 7.x
 
 ## Contents
 
