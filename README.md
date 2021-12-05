@@ -1,14 +1,10 @@
 # Smspoh Notifications Channel for Laravel
 
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/laravel-notification-channels/smspoh.svg?style=flat-square)](https://packagist.org/packages/laravel-notification-channels/smspoh)
-[![Software License](https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square)](LICENSE.md)
-[![Build Status](https://img.shields.io/travis/laravel-notification-channels/smspoh/master.svg?style=flat-square)](https://travis-ci.org/laravel-notification-channels/smspoh)
-[![StyleCI](https://styleci.io/repos/229822475/shield)](https://styleci.io/repos/:style_ci_id)
-[![Quality Score](https://img.shields.io/scrutinizer/g/laravel-notification-channels/smspoh.svg?style=flat-square)](https://scrutinizer-ci.com/g/laravel-notification-channels/smspoh)
-[![Code Coverage](https://img.shields.io/scrutinizer/coverage/g/laravel-notification-channels/smspoh/master.svg?style=flat-square)](https://scrutinizer-ci.com/g/laravel-notification-channels/smspoh/?branch=master)
 [![Total Downloads](https://img.shields.io/packagist/dt/laravel-notification-channels/smspoh.svg?style=flat-square)](https://packagist.org/packages/laravel-notification-channels/smspoh)
+[![Software License](https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square)](LICENSE.md)
 
-This package makes it easy to send notifications using [SmsPoh](https://smspoh.com/) with Laravel 5.5+, 6.x, 7.x and 8.x
+This package makes it easy to send notifications using [SmsPoh](https://smspoh.com/) with Laravel 6.x, 7.x and 8.x
 
 ## Contents
 
