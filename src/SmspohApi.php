@@ -2,7 +2,6 @@
 
 namespace NotificationChannels\Smspoh;
 
-use DomainException;
 use GuzzleHttp\Client as HttpClient;
 use GuzzleHttp\Exception\ClientException;
 use GuzzleHttp\Exception\GuzzleException;
@@ -73,13 +72,7 @@ class SmspohApi
                 ],
             ]);
 
-            $response = json_decode((string) $response->getBody(), true);
-
-            if (isset($response['error'])) {
-                throw new DomainException($response['error'], $response['error_code']);
-            }
-
-            return $response;
+            return json_decode((string) $response->getBody(), true);
         } catch (ClientException $e) {
             throw CouldNotSendNotification::smspohRespondedWithAnError($e);
         } catch (GuzzleException $e) {

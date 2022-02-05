@@ -6,3 +6,4 @@ composer.phar
 composer.lock
 .DS_Stor
 .phpunit.result.cache
+coverage.clover

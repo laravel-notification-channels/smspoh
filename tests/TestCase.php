@@ -6,7 +6,7 @@ use Mockery\Adapter\Phpunit\MockeryPHPUnitIntegration;
 use NotificationChannels\Smspoh\SmspohServiceProvider;
 use Orchestra\Testbench\TestCase as Orchestra;
 
-class TestCase extends Orchestra
+abstract class TestCase extends Orchestra
 {
     use MockeryPHPUnitIntegration;
 
