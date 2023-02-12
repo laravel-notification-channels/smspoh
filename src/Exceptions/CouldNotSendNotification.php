@@ -11,11 +11,11 @@ class CouldNotSendNotification extends Exception
      * Thrown when content length is greater than 918 characters.
      *
      * @param $count
-     * @return static
+     * @return self
      */
     public static function contentLengthLimitExceeded($count): self
     {
-        return new static("Notification was not sent. Content length may not be greater than {$count} characters.", 422);
+        return new self("Notification was not sent. Content length may not be greater than {$count} characters.", 422);
     }
 
     /**
@@ -23,15 +23,15 @@ class CouldNotSendNotification extends Exception
      *
      * @param ClientException $exception
      *
-     * @return static
+     * @return self
      */
     public static function smspohRespondedWithAnError(ClientException $exception): self
     {
         if (! $exception->hasResponse()) {
-            return new static('Smspoh responded with an error but no response body found');
+            return new self('Smspoh responded with an error but no response body found');
         }
 
-        return new static("Smspoh responded with an error '{$exception->getCode()} : {$exception->getMessage()}'", $exception->getCode(), $exception);
+        return new self("Smspoh responded with an error '{$exception->getCode()} : {$exception->getMessage()}'", $exception->getCode(), $exception);
     }
 
     /**
@@ -39,10 +39,10 @@ class CouldNotSendNotification extends Exception
      *
      * @param Exception $exception
      *
-     * @return static
+     * @return self
      */
     public static function couldNotCommunicateWithSmspoh(Exception $exception): self
     {
-        return new static("The communication with smspoh failed. Reason: {$exception->getMessage()}", $exception->getCode(), $exception);
+        return new self("The communication with smspoh failed. Reason: {$exception->getMessage()}", $exception->getCode(), $exception);
     }
 }

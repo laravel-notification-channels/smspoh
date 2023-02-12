@@ -12,20 +12,20 @@ class SmspohChannel
      *
      * @var SmspohApi
      */
-    protected $smspoh;
+    protected SmspohApi $smspoh;
 
     /**
      * The phone number notifications should be sent from.
      *
      * @var string
      */
-    protected $sender;
+    protected string $sender;
 
     /**
      * @var int
      * The message body content count should be no longer than 6 message parts(918).
      */
-    protected $character_limit_count = 918;
+    protected int $character_limit_count = 918;
 
     public function __construct(SmspohApi $smspoh, $sender)
     {
@@ -48,6 +48,7 @@ class SmspohChannel
             return;
         }
 
+        /* @phpstan-ignore-next-line */
         $message = $notification->toSmspoh($notifiable);
 
         if (is_string($message)) {
