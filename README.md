@@ -87,9 +87,6 @@ Notification::route('smspoh', '5555555555')
 `content()`: Set a content of the notification message. This parameter should be no longer than 918 char(6 message parts),
 
 `test()`: Send a test message to specific mobile number or not. This parameter should be boolean and default value is `true`.
-## Changelog
-
-Please see [CHANGELOG](CHANGELOG.md) for more information what has changed recently.
 
 ## Testing
 
@@ -97,13 +94,17 @@ Please see [CHANGELOG](CHANGELOG.md) for more information what has changed recen
 $ composer test
 ```
 
-## Security
+## Changelog
 
-If you discover any security related issues, please email amigo.k8@gmail.com instead of using the issue tracker.
+Please see [CHANGELOG](CHANGELOG.md) for more information what has changed recently.
 
 ## Contributing
 
-Please see [CONTRIBUTING](CONTRIBUTING.md) for details.
+Please see [CONTRIBUTING](https://github.com/laravel-notification-channels/smspoh/blob/main/.github/CONTRIBUTING.md) for details.
+
+## Security Vulnerabilities
+
+Please review [our security policy](../../security/policy) on how to report security vulnerabilities.
 
 ## Credits
 
