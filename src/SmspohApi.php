@@ -13,12 +13,12 @@ class SmspohApi
     /**
      * @var HttpClient
      */
-    protected $client;
+    protected HttpClient $client;
 
     /**
      * @var string
      */
-    protected $endpoint;
+    protected string $endpoint;
 
     /**
      * @var string
@@ -53,11 +53,11 @@ class SmspohApi
      * @link https://smspoh.com/rest-api-documentation/send?version=2
      *
      * @param array $message
-     *
      * @return mixed|\Psr\Http\Message\ResponseInterface
+     *
      * @throws CouldNotSendNotification
      */
-    public function send($message)
+    public function send(array $message)
     {
         try {
             $response = $this->client->request('POST', $this->endpoint, [

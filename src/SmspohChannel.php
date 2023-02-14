@@ -36,10 +36,10 @@ class SmspohChannel
     /**
      * Send the given notification.
      *
-     * @param mixed $notifiable
-     * @param Notification $notification
-     *
+     * @param  mixed  $notifiable
+     * @param  Notification  $notification
      * @return mixed|\Psr\Http\Message\ResponseInterface|void
+     *
      * @throws CouldNotSendNotification
      */
     public function send($notifiable, Notification $notification)

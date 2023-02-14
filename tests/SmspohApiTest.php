@@ -8,7 +8,7 @@ use NotificationChannels\Smspoh\SmspohApi;
 
 class SmspohApiTest extends TestCase
 {
-    private $token = 'token';
+    private string $token = 'token';
 
     /** @test */
     public function it_has_config_with_default(): void
@@ -42,7 +42,6 @@ class SmspohApiTest extends TestCase
         ]);
     }
 
-
     /** @test */
     public function it_can_check_not_communicate_with_smspoh(): void
     {
@@ -64,7 +63,8 @@ class SmspohApiTest extends TestCase
 
     private function getExtendedSmspohApi($token)
     {
-        return new class($token) extends SmspohApi {
+        return new class($token) extends SmspohApi
+        {
             public function getEndpoint(): string
             {
                 return $this->endpoint;

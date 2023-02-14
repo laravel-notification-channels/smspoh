@@ -28,7 +28,7 @@ class SmspohMessage
     /**
      * Create a new message instance.
      *
-     * @param string $content
+     * @param  string  $content
      * @return void
      */
     public function __construct($content = '')
@@ -39,7 +39,7 @@ class SmspohMessage
     /**
      * Set the message content.
      *
-     * @param string $content
+     * @param  string  $content
      * @return $this
      */
     public function content($content)
@@ -52,7 +52,7 @@ class SmspohMessage
     /**
      * Set the sender name the message should be sent from.
      *
-     * @param string $sender
+     * @param  string  $sender
      * @return $this
      */
     public function sender($sender)
@@ -65,7 +65,7 @@ class SmspohMessage
     /**
      * Set the test message Send a test message to specific mobile number.
      *
-     * @param bool $test
+     * @param  bool  $test
      * @return $this
      */
     public function test($test = true)

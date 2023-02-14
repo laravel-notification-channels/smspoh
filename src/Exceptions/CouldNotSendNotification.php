@@ -21,8 +21,7 @@ class CouldNotSendNotification extends Exception
     /**
      * Thrown when we're unable to communicate with smspoh.
      *
-     * @param ClientException $exception
-     *
+     * @param  ClientException  $exception
      * @return self
      */
     public static function smspohRespondedWithAnError(ClientException $exception): self
@@ -37,8 +36,7 @@ class CouldNotSendNotification extends Exception
     /**
      * Thrown when we're unable to communicate with smspoh.
      *
-     * @param Exception $exception
-     *
+     * @param  Exception  $exception
      * @return self
      */
     public static function couldNotCommunicateWithSmspoh(Exception $exception): self

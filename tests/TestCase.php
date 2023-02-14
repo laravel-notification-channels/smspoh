@@ -11,8 +11,7 @@ abstract class TestCase extends Orchestra
     use MockeryPHPUnitIntegration;
 
     /**
-     * @param \Illuminate\Foundation\Application $app
-     *
+     * @param  \Illuminate\Foundation\Application  $app
      * @return array
      */
     protected function getPackageProviders($app)

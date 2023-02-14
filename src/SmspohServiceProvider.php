@@ -12,14 +12,14 @@ class SmspohServiceProvider extends ServiceProvider
     /**
      * Bootstrap the application services.
      */
-    public function boot()
+    public function boot(): void
     {
     }
 
     /**
      * Register the application services.
      */
-    public function register()
+    public function register(): void
     {
         $this->app->singleton(SmspohApi::class, static function ($app) {
             return new SmspohApi(config('services.smspoh.token'), new HttpClient());
