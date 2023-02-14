@@ -100,7 +100,7 @@ Please see [CHANGELOG](CHANGELOG.md) for more information what has changed recen
 
 ## Contributing
 
-Please see [CONTRIBUTING](https://github.com/laravel-notification-channels/smspoh/blob/main/.github/CONTRIBUTING.md) for details.
+Please see [CONTRIBUTING](https://github.com/laravel-notification-channels/smspoh/blob/master/.github/CONTRIBUTING.md) for details.
 
 ## Security Vulnerabilities
 
