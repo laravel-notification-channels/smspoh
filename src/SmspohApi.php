@@ -52,7 +52,7 @@ class SmspohApi
      *
      * @link https://smspoh.com/rest-api-documentation/send?version=2
      *
-     * @param array $message
+     * @param  array  $message
      * @return mixed|\Psr\Http\Message\ResponseInterface
      *
      * @throws CouldNotSendNotification
