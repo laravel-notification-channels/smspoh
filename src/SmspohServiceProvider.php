@@ -29,7 +29,7 @@ class SmspohServiceProvider extends ServiceProvider
         Notification::resolved(static function (ChannelManager $service) {
             $service->extend('smspoh', static fn ($app) => new SmspohChannel(
                 $app[SmspohApi::class],
-                $this->app['config']['services.smspoh.sender'])
+                $app['config']['services.smspoh.sender'])
             );
         });
     }
