@@ -1,0 +1,46 @@
+name: run-tests
+
+on:
+    push:
+        branches: [main]
+    pull_request:
+        branches: [main]
+
+jobs:
+    test:
+        runs-on: ${{ matrix.os }}
+        strategy:
+            fail-fast: true
+            matrix:
+                os: [ubuntu-latest]
+                php: [8.2, 8.1]
+                laravel: [10.*, 9.*, 8.*]
+                dependency-version: [prefer-lowest, prefer-stable]
+                include:
+                    - laravel: 10.*
+                      testbench: 8.*
+                      larastan: 2.4.*
+                    - laravel: 9.*
+                      testbench: 7.*
+                      larastan: 2.*
+
+        name: P${{ matrix.php }} - L${{ matrix.laravel }} - ${{ matrix.stability }} - ${{ matrix.os }}
+
+        steps:
+            - name: Checkout code
+              uses: actions/checkout@v3
+
+            - name: Setup PHP
+              uses: shivammathur/setup-php@v2
+              with:
+                  php-version: ${{ matrix.php }}
+                  coverage: none
+
+            - name: Install dependencies
+              run: |
+                  composer require "laravel/framework:${{ matrix.laravel }}" "orchestra/testbench:${{ matrix.testbench }}" "nunomaduro/larastan:${{ matrix.larastan }}" --no-interaction --no-update
+                  composer update --${{ matrix.dependency-version }} --prefer-dist --no-interaction
+
+            - name: Execute tests
+              timeout-minutes: 2
+              run: vendor/bin/phpunit --verbose

@@ -23,14 +23,14 @@ class SmspohApi
     /**
      * @var string
      */
-    protected $sender;
+    protected string $sender;
 
     /**
      * @var string
      */
-    protected $token;
+    protected mixed $token;
 
-    public function __construct($token = null, HttpClient $httpClient = null)
+    public function __construct($token = null, $httpClient = null)
     {
         $this->token = $token;
         $this->client = $httpClient;

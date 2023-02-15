@@ -21,14 +21,16 @@ class SmspohServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
-        $this->app->singleton(SmspohApi::class, static function ($app) {
-            return new SmspohApi(config('services.smspoh.token'), new HttpClient());
-        });
+        $this->app->bind(SmspohApi::class, static fn () => new SmspohApi(
+            config('services.smspoh.token'),
+            app(HttpClient::class)
+        ));
 
-        Notification::resolved(function (ChannelManager $service) {
-            $service->extend('smspoh', function ($app) {
-                return new SmspohChannel($app[SmspohApi::class], $this->app['config']['services.smspoh.sender']);
-            });
+        Notification::resolved(static function (ChannelManager $service) {
+            $service->extend('smspoh', static fn ($app) => new SmspohChannel(
+                $app[SmspohApi::class],
+                $this->app['config']['services.smspoh.sender'])
+            );
         });
     }
 }
