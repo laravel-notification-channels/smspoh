@@ -16,9 +16,6 @@ class SmspohApi
 
     protected string $sender;
 
-    /**
-     * @var string
-     */
     protected mixed $token;
 
     public function __construct($token = null, $httpClient = null)
