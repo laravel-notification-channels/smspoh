@@ -9,9 +9,6 @@ class CouldNotSendNotification extends Exception
 {
     /**
      * Thrown when content length is greater than 918 characters.
-     *
-     * @param $count
-     * @return self
      */
     public static function contentLengthLimitExceeded($count): self
     {
@@ -20,9 +17,6 @@ class CouldNotSendNotification extends Exception
 
     /**
      * Thrown when we're unable to communicate with smspoh.
-     *
-     * @param  ClientException  $exception
-     * @return self
      */
     public static function smspohRespondedWithAnError(ClientException $exception): self
     {
@@ -35,9 +29,6 @@ class CouldNotSendNotification extends Exception
 
     /**
      * Thrown when we're unable to communicate with smspoh.
-     *
-     * @param  Exception  $exception
-     * @return self
      */
     public static function couldNotCommunicateWithSmspoh(Exception $exception): self
     {

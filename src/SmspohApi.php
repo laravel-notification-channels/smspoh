@@ -10,19 +10,10 @@ use NotificationChannels\Smspoh\Exceptions\CouldNotSendNotification;
 
 class SmspohApi
 {
-    /**
-     * @var HttpClient
-     */
     protected HttpClient $client;
 
-    /**
-     * @var string
-     */
     protected string $endpoint;
 
-    /**
-     * @var string
-     */
     protected string $sender;
 
     /**
@@ -52,7 +43,6 @@ class SmspohApi
      *
      * @link https://smspoh.com/rest-api-documentation/send?version=2
      *
-     * @param  array  $message
      * @return mixed|\Psr\Http\Message\ResponseInterface
      *
      * @throws CouldNotSendNotification

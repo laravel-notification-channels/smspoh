@@ -9,15 +9,11 @@ class SmspohChannel
 {
     /**
      * The Smspoh client instance.
-     *
-     * @var SmspohApi
      */
     protected SmspohApi $smspoh;
 
     /**
      * The phone number notifications should be sent from.
-     *
-     * @var string
      */
     protected string $sender;
 
@@ -37,7 +33,6 @@ class SmspohChannel
      * Send the given notification.
      *
      * @param  mixed  $notifiable
-     * @param  Notification  $notification
      * @return mixed|\Psr\Http\Message\ResponseInterface|void
      *
      * @throws CouldNotSendNotification
