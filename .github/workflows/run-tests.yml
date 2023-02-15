@@ -43,4 +43,4 @@ jobs:
 
             - name: Execute tests
               timeout-minutes: 2
-              run: vendor/bin/phpunit --verbose
+              run: vendor/bin/pest
