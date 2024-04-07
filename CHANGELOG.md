@@ -6,7 +6,7 @@ All notable changes to `smspoh` will be documented in this file
 
 ### Added
 
-- Support Laravel 10.x
+- Support Laravel 11.x
 
 ## 1.4.0 - 2023-02-15
 
