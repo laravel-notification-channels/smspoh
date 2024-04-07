@@ -2,9 +2,16 @@
 
 All notable changes to `smspoh` will be documented in this file
 
+## v1.5.0 - 2024-04-07
+
+### Added
+
+- Support Laravel 10.x
+
 ## 1.4.0 - 2023-02-15
 
 ### Added
+
 - Support Laravel 10.x
 - Test with Pest.
 - Add PHPStan for static analysis using GitHub Action.
@@ -12,6 +19,7 @@ All notable changes to `smspoh` will be documented in this file
 - Add Changelog updater workflow.
 
 ### Changed
+
 - Drop support for Laravel < 9.
 - Drop support for PHP < 8.1.
 - Improve Test.
