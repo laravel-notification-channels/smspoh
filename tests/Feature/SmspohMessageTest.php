@@ -9,19 +9,19 @@ it('can accept a content when constructing a message', function () {
 });
 
 it('can set the content', function () {
-    $message = (new SmspohMessage())->content('hello');
+    $message = (new SmspohMessage)->content('hello');
 
     $this->assertEquals('hello', $message->content);
 });
 
 it('can set the from', function () {
-    $message = (new SmspohMessage())->sender('Smspoh');
+    $message = (new SmspohMessage)->sender('Smspoh');
 
     $this->assertEquals('Smspoh', $message->sender);
 });
 
 it('can set the test', function () {
-    $message = (new SmspohMessage())->test(true);
+    $message = (new SmspohMessage)->test(true);
 
     $this->assertTrue($message->test);
 });

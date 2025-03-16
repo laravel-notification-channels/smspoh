@@ -16,27 +16,27 @@ it('can send a notification', function () {
         'test' => false,
     ])->once();
 
-    $this->channel->send(new TestNotifiable(), new TestNotification());
+    $this->channel->send(new TestNotifiable, new TestNotification);
 });
 
 it('can send string message', function () {
     $this->smspohApi->shouldReceive('send')->once();
 
-    $this->channel->send(new TestNotifiable(), new TestNotificationStringMessage());
+    $this->channel->send(new TestNotifiable, new TestNotificationStringMessage);
 });
 
 it('does not send a message when to missed', function () {
     $this->smspohApi->shouldNotReceive('send');
 
-    $this->channel->send(new TestNotifiableWithoutRouteNotificationForSmspoh(), new TestNotification());
+    $this->channel->send(new TestNotifiableWithoutRouteNotificationForSmspoh, new TestNotification);
 });
 
 it('can check long content length', function () {
-    $this->channel->send(new TestNotifiable(), new TestNotificationTooLongMessage());
+    $this->channel->send(new TestNotifiable, new TestNotificationTooLongMessage);
 })->throws(CouldNotSendNotification::class, 'Notification was not sent. Content length may not be greater than 918 characters.');
 
 it('can check limit count content', function () {
     $this->smspohApi->shouldReceive('send')->once();
 
-    $this->channel->send(new TestNotifiable(), new TestNotificationLimitCountMessage());
+    $this->channel->send(new TestNotifiable, new TestNotificationLimitCountMessage);
 });

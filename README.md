@@ -109,7 +109,7 @@ Please review [our security policy](../../security/policy) on how to report secu
 
 ## Credits
 
-- [Tint Naing Win](https://github.com/tintnaingwinn)
+- [Tint Naing Win](https://github.com/tintnaingwin)
 - [All Contributors](../../contributors)
 
 ## License

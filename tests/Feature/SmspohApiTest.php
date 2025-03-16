@@ -17,7 +17,7 @@ it('has config with default', function () {
 });
 
 it('can check smspoh responded with error', function () {
-    $smspoh = new SmspohApi('token', new Client());
+    $smspoh = new SmspohApi('token', new Client);
 
     $smspoh->send([
         'sender' => '5554443333',
@@ -30,7 +30,7 @@ it('can check smspoh responded with error', function () {
 it('can check not communicate with smspoh', function () {
     config()->set('services.smspoh.endpoint', 'https://smspoh2.com/api/v2/send');
 
-    $smspoh = new SmspohApi('token', new Client());
+    $smspoh = new SmspohApi('token', new Client);
 
     $smspoh->send([
         'sender' => '5554443333',
