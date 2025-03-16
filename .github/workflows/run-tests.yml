@@ -2,24 +2,19 @@ name: run-tests
 
 on:
     push:
-        branches: [master]
+        branches: [main]
     pull_request:
-        branches: [master]
+        branches: [main]
 
 jobs:
     test:
-        runs-on: ubuntu-22.04
+        runs-on: ubuntu-latest
 
         strategy:
             fail-fast: true
             matrix:
-                php: [ 8.1, 8.2, 8.3 ]
-                laravel: [ 9, 10, 11 ]
-                exclude:
-                    -   php: 8.1
-                        laravel: 11
-                    -   php: 8.3
-                        laravel: 9
+                php: [ 8.4,8.3,8.2 ]
+                laravel: [ "^12.0", "^11.0" ]
 
         name: PHP ${{ matrix.php }} - Laravel ${{ matrix.laravel }}
 
@@ -42,7 +37,7 @@ jobs:
 
             - name: Install dependencies
               run: |
-                  composer require "laravel/framework:^${{ matrix.laravel }}" --no-update
+                  composer require "laravel/framework:${{ matrix.laravel }}" --no-update
                   composer update --prefer-dist --no-interaction --no-progress
 
             - name: Execute tests
