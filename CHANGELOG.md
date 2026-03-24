@@ -2,6 +2,59 @@
 
 All notable changes to `smspoh` will be documented in this file
 
+## v2.0.0 - 2026-03-24
+
+### 🚀 SMSPoh Notifications Channel v2.0.0
+
+#### 🌟 New Features
+
+* **SMSPoh API v3 Integration**:
+    
+    * **Message Scheduling**: Schedule messages to be sent later with `scheduledAt('Y-m-d H:i:s')`.
+    * **Encrypted Messages**: Secure banking, OTP, or sensitive alerts with `encrypt()` and optional `encryptKey($key)`.
+    * **Unicode Support**: Support for Unicode messages via `unicode()`.
+    * **Custom Delivery Receipts**: Define standard webhooks at runtime using `deliveryReceiptUrl($url)`.
+    * **Client Reference**: Append tracking references with `clientReference($id)`.
+    
+* **Laravel Support**: Compatibility with **Laravel 13.x**.
+    
+
+
+---
+
+#### ⚠️ Breaking Changes & Upgrading
+
+Please review the full [UPGRADE.md](https://github.com/laravel-notification-channels/smspoh/blob/master/UPGRADE.md) if coming from v1.
+
+##### 1. Configuration updates (`config/services.php`)
+
+The v3 API uses modern key/secret credentials. Change your `token` key to `key` & `secret`. Additionally, `sender` is renamed to `from`.
+
+###### Previous (v1):
+
+```php
+'smspoh' => [
+    'token' => env('SMSPOH_TOKEN'),
+    'sender' => env('SMSPOH_FROM'),
+]
+
+```
+###### New (v2):
+
+```php
+'smspoh' => [
+    'key' => env('SMSPOH_KEY'),
+    'secret' => env('SMSPOH_SECRET'),
+    'from' => env('SMSPOH_FROM'),
+]
+
+```
+##### 2. Method Deprecation
+
+`SmspohMessage->sender()` is deprecated. Use `SmspohMessage->from()` instead.
+
+**Full Changelog**: https://github.com/laravel-notification-channels/smspoh/compare/v1.6.0...v2.0.0
+
 ## v1.6.0 - 2025-03-16
 
 ### What's Changed
