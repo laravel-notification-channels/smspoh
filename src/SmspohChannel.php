@@ -60,6 +60,11 @@ class SmspohChannel
             'message' => trim($message->content),
             'test' => $message->test ?: false,
             'clientReference' => $message->clientReference,
+            'scheduledAt' => $message->scheduledAt,
+            'encrypt' => $message->encrypt,
+            'encryptKey' => $message->encryptKey,
+            'unicode' => $message->unicode,
+            'deliveryReceiptUrl' => $message->deliveryReceiptUrl,
         ]);
     }
 }
