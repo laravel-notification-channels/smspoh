@@ -11,7 +11,7 @@ use Psr\Http\Message\ResponseInterface;
 
 class SmspohApi
 {
-    public const string ENDPOINT = 'https://v3.smspoh.com/api/rest/send';
+    public const ENDPOINT = 'https://v3.smspoh.com/api/rest/send';
 
     protected HttpClient $client;
 
