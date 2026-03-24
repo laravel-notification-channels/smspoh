@@ -1,48 +1,58 @@
 name: run-tests
 
 on:
-  push:
-    branches: [master]
-  pull_request:
-    branches: [master]
+    push:
+        branches: [master]
+    pull_request:
+        branches: [master]
 
 jobs:
-  test:
-    runs-on: ${{ matrix.os }}
-    strategy:
-      fail-fast: true
-      matrix:
-        os: [ubuntu-latest]
-        php: [ 8.4, 8.3, 8.2 ]
-        laravel: ["^12.0", "^11.0", "^10.0"]
-        stability: [prefer-stable]
-        exclude:
-          - php: 8.1
-            laravel: "^12.0"
-          - php: 8.1
-            laravel: "^11.0"
+    test:
+        runs-on: ${{ matrix.os }}
+        strategy:
+            fail-fast: true
+            matrix:
+                os: [ubuntu-latest]
+                php: [ 8.5, 8.4, 8.3, 8.2 ]
+                laravel: ["^13.0", "^12.0", "^11.0", "^10.0"]
+                stability: [prefer-stable]
+                exclude:
+                    - php: 8.5
+                      laravel: "^11.0"
+                    - php: 8.5
+                      laravel: "^10.0"
+                    - php: 8.4
+                      laravel: "^10.0"
+                    - php: 8.2
+                      laravel: "^13.0"
+                    - php: 8.1
+                      laravel: "^13.0"
+                    - php: 8.1
+                      laravel: "^12.0"
+                    - php: 8.1
+                      laravel: "^11.0"
 
-    name: P${{ matrix.php }} - L${{ matrix.laravel }} - ${{ matrix.stability }} - ${{ matrix.os }}
+        name: P${{ matrix.php }} - L${{ matrix.laravel }} - ${{ matrix.stability }} - ${{ matrix.os }}
 
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v6
+        steps:
+            - name: Checkout code
+              uses: actions/checkout@v6
 
-      - name: Setup PHP
-        uses: shivammathur/setup-php@v2
-        with:
-          php-version: ${{ matrix.php }}
-          coverage: none
+            - name: Setup PHP
+              uses: shivammathur/setup-php@v2
+              with:
+                  php-version: ${{ matrix.php }}
+                  coverage: none
 
-      - name: Setup problem matchers
-        run: |
-          echo "::add-matcher::${{ runner.tool_cache }}/php.json"
-          echo "::add-matcher::${{ runner.tool_cache }}/phpunit.json"
+            - name: Setup problem matchers
+              run: |
+                  echo "::add-matcher::${{ runner.tool_cache }}/php.json"
+                  echo "::add-matcher::${{ runner.tool_cache }}/phpunit.json"
 
-      - name: Install dependencies
-        run: |
-          composer require "laravel/framework:${{ matrix.laravel }}" --no-interaction --no-update
-          composer update --${{ matrix.stability }} --prefer-dist --no-interaction
+            - name: Install dependencies
+              run: |
+                  composer require "laravel/framework:${{ matrix.laravel }}" --no-interaction --no-update
+                  composer update --${{ matrix.stability }} --prefer-dist --no-interaction
 
-      - name: Execute tests
-        run: vendor/bin/pest
+            - name: Execute tests
+              run: vendor/bin/pest
