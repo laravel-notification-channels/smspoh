@@ -25,3 +25,9 @@ it('can set the test', function () {
 
     $this->assertTrue($message->test);
 });
+
+it('can set the client reference', function () {
+    $message = (new SmspohMessage)->clientReference('abcde12345');
+
+    $this->assertEquals('abcde12345', $message->clientReference);
+});

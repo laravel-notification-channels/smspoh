@@ -2,6 +2,7 @@
 
 namespace NotificationChannels\Smspoh\Tests;
 
+use Illuminate\Foundation\Application;
 use Mockery;
 use NotificationChannels\Smspoh\SmspohApi;
 use NotificationChannels\Smspoh\SmspohChannel;
@@ -28,7 +29,7 @@ abstract class TestCase extends Orchestra
     }
 
     /**
-     * @param  \Illuminate\Foundation\Application  $app
+     * @param  Application  $app
      */
     protected function getPackageProviders($app): array
     {

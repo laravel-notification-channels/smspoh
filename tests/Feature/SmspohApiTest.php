@@ -5,7 +5,7 @@ use NotificationChannels\Smspoh\Exceptions\CouldNotSendNotification;
 use NotificationChannels\Smspoh\SmspohApi;
 
 it('has config with default', function () {
-    $endpoint = 'https://smspoh.com/api/v2/send';
+    $endpoint = 'https://v3.smspoh.com/api/rest/send';
 
     config()->set('services.smspoh.token', 'token');
     config()->set('services.smspoh.endpoint', $endpoint);
@@ -16,11 +16,20 @@ it('has config with default', function () {
     $this->assertEquals($endpoint, $smspoh->getEndpoint());
 });
 
+it('falls back to v3 endpoint if not set', function () {
+    config()->set('services.smspoh.token', 'token');
+    // Ensure endpoint IS NOT set in config to test fallback
+
+    $smspoh = getExtendedSmspohApi('token', new Client);
+
+    $this->assertEquals('https://v3.smspoh.com/api/rest/send', $smspoh->getEndpoint());
+});
+
 it('can check smspoh responded with error', function () {
     $smspoh = new SmspohApi('token', new Client);
 
     $smspoh->send([
-        'sender' => '5554443333',
+        'from' => '5554443333',
         'to' => '5555555555',
         'message' => 'this is my message',
         'test' => true,
@@ -28,12 +37,12 @@ it('can check smspoh responded with error', function () {
 })->throws(CouldNotSendNotification::class);
 
 it('can check not communicate with smspoh', function () {
-    config()->set('services.smspoh.endpoint', 'https://smspoh2.com/api/v2/send');
+    config()->set('services.smspoh.endpoint', 'https://v3.smspoh.com/api/rest/send');
 
     $smspoh = new SmspohApi('token', new Client);
 
     $smspoh->send([
-        'sender' => '5554443333',
+        'from' => '5554443333',
         'to' => '5555555555',
         'message' => 'this is my message',
         'test' => true,

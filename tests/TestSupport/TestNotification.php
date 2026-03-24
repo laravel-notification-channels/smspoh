@@ -9,6 +9,6 @@ class TestNotification extends Notification
 {
     public function toSmspoh($notifiable): SmspohMessage
     {
-        return (new SmspohMessage('this is my message'))->sender('5554443333');
+        return (new SmspohMessage('this is my message'))->from('5554443333');
     }
 }

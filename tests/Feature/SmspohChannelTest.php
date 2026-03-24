@@ -1,6 +1,8 @@
 <?php
 
+use Illuminate\Notifications\Notification;
 use NotificationChannels\Smspoh\Exceptions\CouldNotSendNotification;
+use NotificationChannels\Smspoh\SmspohMessage;
 use NotificationChannels\Smspoh\Tests\TestSupport\TestNotifiable;
 use NotificationChannels\Smspoh\Tests\TestSupport\TestNotifiableWithoutRouteNotificationForSmspoh;
 use NotificationChannels\Smspoh\Tests\TestSupport\TestNotification;
@@ -10,13 +12,34 @@ use NotificationChannels\Smspoh\Tests\TestSupport\TestNotificationTooLongMessage
 
 it('can send a notification', function () {
     $this->smspohApi->shouldReceive('send')->with([
-        'sender' => '5554443333',
+        'from' => '5554443333',
         'to' => '5555555555',
         'message' => 'this is my message',
         'test' => false,
+        'clientReference' => null,
     ])->once();
 
     $this->channel->send(new TestNotifiable, new TestNotification);
+});
+
+it('can send a notification using sender fallback', function () {
+    $this->smspohApi->shouldReceive('send')->with([
+        'from' => '5554443333',
+        'to' => '5555555555',
+        'message' => 'this is my message',
+        'test' => false,
+        'clientReference' => null,
+    ])->once();
+
+    $notification = new class extends Notification
+    {
+        public function toSmspoh($notifiable): SmspohMessage
+        {
+            return (new SmspohMessage('this is my message'))->sender('5554443333');
+        }
+    };
+
+    $this->channel->send(new TestNotifiable, $notification);
 });
 
 it('can send string message', function () {
