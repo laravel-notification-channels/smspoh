@@ -32,6 +32,31 @@ class SmspohMessage
     public ?string $clientReference = null;
 
     /**
+     * Scheduling delivery. The datetime string should be in Y-m-d H:i:s format.
+     */
+    public ?string $scheduledAt = null;
+
+    /**
+     * Encrypt the message content.
+     */
+    public ?bool $encrypt = null;
+
+    /**
+     * The encryption key for message content.
+     */
+    public ?string $encryptKey = null;
+
+    /**
+     * Send as unicode message.
+     */
+    public ?bool $unicode = null;
+
+    /**
+     * Callback URL to receive delivery receipts.
+     */
+    public ?string $deliveryReceiptUrl = null;
+
+    /**
      * Create a new message instance.
      */
     public function __construct(string $content = '')
@@ -87,6 +112,56 @@ class SmspohMessage
     public function clientReference(string $clientReference): static
     {
         $this->clientReference = $clientReference;
+
+        return $this;
+    }
+
+    /**
+     * Set the scheduled delivery time.
+     */
+    public function scheduledAt(string $scheduledAt): static
+    {
+        $this->scheduledAt = $scheduledAt;
+
+        return $this;
+    }
+
+    /**
+     * Set the message encryption flag.
+     */
+    public function encrypt(bool $encrypt = true): static
+    {
+        $this->encrypt = $encrypt;
+
+        return $this;
+    }
+
+    /**
+     * Set the message encryption key.
+     */
+    public function encryptKey(string $encryptKey): static
+    {
+        $this->encryptKey = $encryptKey;
+
+        return $this;
+    }
+
+    /**
+     * Set the message unicode flag.
+     */
+    public function unicode(bool $unicode = true): static
+    {
+        $this->unicode = $unicode;
+
+        return $this;
+    }
+
+    /**
+     * Set the delivery receipt URL.
+     */
+    public function deliveryReceiptUrl(string $deliveryReceiptUrl): static
+    {
+        $this->deliveryReceiptUrl = $deliveryReceiptUrl;
 
         return $this;
     }

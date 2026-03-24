@@ -34,11 +34,16 @@ class SmspohApi
      *
      * <code>
      * $message = [
-     *   'from'            => '', // String - The Sender ID (alphanumeric or numeric, depending on your account settings). Please note that the Sender ID is case-sensitive.
-     *   'to'              => '', // String - Recipient mobile numbers. The mobile number can start with (09, 959 or +959) prefixes.
-     *   'message'         => '', // String - The message text to be sent.
-     *   'test'            => '', // Boolean - Send a test message.
-     *   'clientReference' => '', // String - Your reference value for this transaction.
+     *   'from'               => '', // String - The Sender ID (alphanumeric or numeric, depending on your account settings). Please note that the Sender ID is case-sensitive.
+     *   'to'                 => '', // String - Recipient mobile numbers. The mobile number can start with (09, 959 or +959) prefixes.
+     *   'message'            => '', // String - The message text to be sent.
+     *   'test'               => '', // Boolean - Send a test message.
+     *   'clientReference'    => '', // String - Your reference value for this transaction.
+     *   'scheduledAt'        => '', // String - Scheduling delivery. The datetime string should be in Y-m-d H:i:s format.
+     *   'encrypt'            => '', // Boolean - Encrypt the message content.
+     *   'encryptKey'         => '', // String - The encryption key for message content.
+     *   'unicode'            => '', // Boolean - Send as unicode message.
+     *   'deliveryReceiptUrl' => '', // String - Callback URL to receive delivery receipts.
      * ];
      * </code>
      *
@@ -61,6 +66,11 @@ class SmspohApi
                     'message' => Arr::get($message, 'message'),
                     'clientReference' => Arr::get($message, 'clientReference'),
                     'test' => Arr::get($message, 'test'),
+                    'scheduledAt' => Arr::get($message, 'scheduledAt'),
+                    'encrypt' => ($encrypt = Arr::get($message, 'encrypt')) !== null ? (int) $encrypt : null,
+                    'encryptKey' => Arr::get($message, 'encryptKey'),
+                    'unicode' => ($unicode = Arr::get($message, 'unicode')) !== null ? (int) $unicode : null,
+                    'deliveryReceiptUrl' => Arr::get($message, 'deliveryReceiptUrl'),
                 ], static fn ($value) => $value !== null),
             ]);
 

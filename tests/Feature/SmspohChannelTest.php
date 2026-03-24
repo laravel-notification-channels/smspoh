@@ -17,6 +17,11 @@ it('can send a notification', function () {
         'message' => 'this is my message',
         'test' => false,
         'clientReference' => null,
+        'scheduledAt' => null,
+        'encrypt' => null,
+        'encryptKey' => null,
+        'unicode' => null,
+        'deliveryReceiptUrl' => null,
     ])->once();
 
     $this->channel->send(new TestNotifiable, new TestNotification);
@@ -29,6 +34,11 @@ it('can send a notification using sender fallback', function () {
         'message' => 'this is my message',
         'test' => false,
         'clientReference' => null,
+        'scheduledAt' => null,
+        'encrypt' => null,
+        'encryptKey' => null,
+        'unicode' => null,
+        'deliveryReceiptUrl' => null,
     ])->once();
 
     $notification = new class extends Notification
@@ -46,6 +56,37 @@ it('can send string message', function () {
     $this->smspohApi->shouldReceive('send')->once();
 
     $this->channel->send(new TestNotifiable, new TestNotificationStringMessage);
+});
+
+it('can send a notification with additional options', function () {
+    $this->smspohApi->shouldReceive('send')->with([
+        'from' => '5554443333',
+        'to' => '5555555555',
+        'message' => 'this is my message',
+        'test' => false,
+        'clientReference' => null,
+        'scheduledAt' => '2026-03-24 12:00:00',
+        'encrypt' => true,
+        'encryptKey' => 'SecretKey',
+        'unicode' => true,
+        'deliveryReceiptUrl' => 'https://example.com/webhook',
+    ])->once();
+
+    $notification = new class extends Notification
+    {
+        public function toSmspoh($notifiable): SmspohMessage
+        {
+            return (new SmspohMessage('this is my message'))
+                ->from('5554443333')
+                ->scheduledAt('2026-03-24 12:00:00')
+                ->encrypt()
+                ->encryptKey('SecretKey')
+                ->unicode()
+                ->deliveryReceiptUrl('https://example.com/webhook');
+        }
+    };
+
+    $this->channel->send(new TestNotifiable, $notification);
 });
 
 it('does not send a message when to missed', function () {
