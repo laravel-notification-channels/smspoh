@@ -1,6 +1,6 @@
 # Upgrade Guide
 
-## Upgrading from v2 to v3
+## Upgrading from v1 to v2
 
 This guide covers the breaking changes and updates required when upgrading to support SMSPoh API v3.
 
@@ -8,7 +8,7 @@ This guide covers the breaking changes and updates required when upgrading to su
 
 The configuration structure has been updated to align with the API v3 authentication standards (`key` and `secret`) and field naming (`from`).
 
-#### Previous Configuration (v2)
+#### Previous Configuration (v1)
 ```php
 'smspoh' => [
     'endpoint' => env('SMSPOH_ENDPOINT', 'https://smspoh.com/api/v2/send'),
@@ -17,7 +17,7 @@ The configuration structure has been updated to align with the API v3 authentica
 ],
 ```
 
-#### New Configuration (v3)
+#### New Configuration (v2)
 In v3, you should use `key` and `secret` instead of `token`. The `endpoint` is now defaulting to the v3 REST URL and can usually be omitted. Additionally, `sender` is now `from`.
 
 ```php
