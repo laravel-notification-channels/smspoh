@@ -7,9 +7,12 @@ use GuzzleHttp\Exception\ClientException;
 use GuzzleHttp\Exception\GuzzleException;
 use Illuminate\Support\Arr;
 use NotificationChannels\Smspoh\Exceptions\CouldNotSendNotification;
+use Psr\Http\Message\ResponseInterface;
 
 class SmspohApi
 {
+    public const string ENDPOINT = 'https://v3.smspoh.com/api/rest/send';
+
     protected HttpClient $client;
 
     protected string $endpoint;
@@ -23,7 +26,7 @@ class SmspohApi
         $this->token = $token;
         $this->client = $httpClient;
 
-        $this->endpoint = config('services.smspoh.endpoint', 'https://smspoh.com/api/v2/send');
+        $this->endpoint = config('services.smspoh.endpoint', self::ENDPOINT);
     }
 
     /**
@@ -31,16 +34,17 @@ class SmspohApi
      *
      * <code>
      * $message = [
-     *   'sender'   => '',
-     *   'to'       => '',
-     *   'message'  => '',
-     *   'test'     => '',
+     *   'from'            => '', // String - The Sender ID (alphanumeric or numeric, depending on your account settings). Please note that the Sender ID is case-sensitive.
+     *   'to'              => '', // String - Recipient mobile numbers. The mobile number can start with (09, 959 or +959) prefixes.
+     *   'message'         => '', // String - The message text to be sent.
+     *   'test'            => '', // Boolean - Send a test message.
+     *   'clientReference' => '', // String - Your reference value for this transaction.
      * ];
      * </code>
      *
-     * @link https://smspoh.com/rest-api-documentation/send?version=2
+     * @link https://smspoh.com/v3/developers/restful-sms-api-specification#send-sms-url
      *
-     * @return mixed|\Psr\Http\Message\ResponseInterface
+     * @return mixed|ResponseInterface
      *
      * @throws CouldNotSendNotification
      */
@@ -51,12 +55,13 @@ class SmspohApi
                 'headers' => [
                     'Authorization' => "Bearer {$this->token}",
                 ],
-                'json' => [
-                    'sender' => Arr::get($message, 'sender'),
+                'json' => array_filter([
+                    'from' => Arr::get($message, 'from') ?: Arr::get($message, 'sender'),
                     'to' => Arr::get($message, 'to'),
                     'message' => Arr::get($message, 'message'),
-                    'test' => Arr::get($message, 'test', false),
-                ],
+                    'clientReference' => Arr::get($message, 'clientReference'),
+                    'test' => Arr::get($message, 'test'),
+                ], static fn ($value) => $value !== null),
             ]);
 
             return json_decode((string) $response->getBody(), true);

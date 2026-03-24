@@ -19,16 +19,23 @@ class SmspohServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
-        $this->app->bind(SmspohApi::class, static fn () => new SmspohApi(
-            config('services.smspoh.token'),
-            app(HttpClient::class)
-        ));
+        $this->app->bind(SmspohApi::class, static function () {
+            $key = config('services.smspoh.key');
+            $secret = config('services.smspoh.secret');
+
+            $token = $key && $secret ? base64_encode("{$key}:{$secret}") : config('services.smspoh.token');
+
+            return new SmspohApi(
+                $token,
+                app(HttpClient::class)
+            );
+        });
 
         Notification::resolved(static function (ChannelManager $service) {
             $service->extend('smspoh', static fn ($app) => new SmspohChannel(
                 $app[SmspohApi::class],
-                $app['config']['services.smspoh.sender'])
-            );
+                $app['config']['services.smspoh.from'] ?: $app['config']['services.smspoh.sender']
+            ));
         });
     }
 }
